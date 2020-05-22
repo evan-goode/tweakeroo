@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.GameRenderer;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
@@ -44,6 +45,15 @@ public abstract class MixinGameRenderer
     private void onRenderWorld(CallbackInfo ci)
     {
         if (Callbacks.skipWorldRendering)
+        {
+            ci.cancel();
+        }
+    }
+
+    @Inject(method="bobViewWhenHurt", at = @At("HEAD"), cancellable = true)
+    private void disableHurtViewBob(MatrixStack ms, float f, CallbackInfo ci)
+    {
+        if(Configs.Disable.DISABLE_HURT_VIEW_BOB.getBooleanValue())
         {
             ci.cancel();
         }

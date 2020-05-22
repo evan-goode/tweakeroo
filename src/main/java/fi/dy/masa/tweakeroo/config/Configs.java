@@ -208,6 +208,7 @@ public class Configs implements IConfigHandler
         public static final ConfigBooleanHotkeyed       DISABLE_ENTITY_TICKING          = new ConfigBooleanClient  ("disableEntityTicking",                 false, "", "Prevent everything except player entities from getting ticked");
         public static final ConfigBooleanHotkeyed       DISABLE_FALLING_BLOCK_RENDER    = new ConfigBooleanHotkeyed("disableFallingBlockEntityRendering",   false, "", "If enabled, then falling block entities won't be rendered at all");
         public static final ConfigBooleanHotkeyed       DISABLE_FOV_CHANGES             = new ConfigBooleanHotkeyed("disableFovChanges",                    false, "", "If enabled, the field of view will not change when sprinting or under the Speed effect.");
+        public static final ConfigBooleanHotkeyed       DISABLE_HURT_VIEW_BOB           = new ConfigBooleanHotkeyed("disableHurtViewBob",                   false, "", "Disables the view bob when the player is hurt");
         public static final ConfigBooleanHotkeyed       DISABLE_INVENTORY_EFFECTS       = new ConfigBooleanHotkeyed("disableInventoryEffectRendering",      false, "", "Removes the potion effect rendering from the inventory GUIs");
         public static final ConfigBooleanHotkeyed       DISABLE_ITEM_SWITCH_COOLDOWN    = new ConfigBooleanHotkeyed("disableItemSwitchRenderCooldown",      false, "", "If true, then there won't be any cooldown/equip animation\nwhen switching the held item or using the item.");
         public static final ConfigBooleanHotkeyed       DISABLE_MOB_SPAWNER_MOB_RENDER  = new ConfigBooleanHotkeyed("disableMobSpawnerMobRendering",        false, "", "Removes the entity rendering from mob spawners");
@@ -235,6 +236,7 @@ public class Configs implements IConfigHandler
                 DISABLE_ENTITY_TICKING,
                 DISABLE_FALLING_BLOCK_RENDER,
                 DISABLE_FOV_CHANGES,
+                DISABLE_HURT_VIEW_BOB,
                 DISABLE_INVENTORY_EFFECTS,
                 DISABLE_ITEM_SWITCH_COOLDOWN,
                 DISABLE_MOB_SPAWNER_MOB_RENDER,
