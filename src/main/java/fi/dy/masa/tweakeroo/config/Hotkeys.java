@@ -41,6 +41,7 @@ public class Hotkeys
     public static final ConfigHotkey PLACEMENT_RESTRICTION_MODE_PLANE   = new ConfigHotkey("placementRestrictionModePlane",     "Z,1",  "Switch the Placement Restriction mode to the Plane mode");
     public static final ConfigHotkey SKIP_ALL_RENDERING                 = new ConfigHotkey("skipAllRendering",                  "",     "Toggles skipping _all_ rendering");
     public static final ConfigHotkey SKIP_WORLD_RENDERING               = new ConfigHotkey("skipWorldRendering",                "",     "Toggles skipping world rendering");
+    public static final ConfigHotkey SWAP_CHEST                         = new ConfigHotkey("swapChest",                         "",     KeybindSettings.PRESS_ALLOWEXTRA, "Swap chest");
     public static final ConfigHotkey TOOL_PICK                          = new ConfigHotkey("toolPick",                          "",     "Switches to the effective tool for the targeted block");
     public static final ConfigHotkey ZOOM_ACTIVATE                      = new ConfigHotkey("zoomActivate",                      "",     "Zoom activation hotkey");
 
@@ -79,6 +80,7 @@ public class Hotkeys
             PLACEMENT_RESTRICTION_MODE_PLANE,
             SKIP_ALL_RENDERING,
             SKIP_WORLD_RENDERING,
+            SWAP_CHEST,
             TOOL_PICK,
             ZOOM_ACTIVATE
     );

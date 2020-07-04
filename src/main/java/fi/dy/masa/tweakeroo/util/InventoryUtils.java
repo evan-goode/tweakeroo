@@ -9,6 +9,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -361,7 +362,7 @@ public class InventoryUtils
 
             if (slotRepairableItem != -1)
             {
-                swapItemToEqupmentSlot(player, type, slotRepairableItem);
+                swapItemToEquipmentSlot(player, type, slotRepairableItem);
                 InfoUtils.printActionbarMessage("tweakeroo.message.repair_mode.swapped_repairable_item_to_slot", type.getName());
             }
         }
@@ -419,6 +420,36 @@ public class InventoryUtils
         return -1;
     }
 
+    private static int findSlotWithChestEquipment(ScreenHandler container, boolean reverse)
+    {
+        final int startSlot = reverse ? container.slots.size() - 1 : 0;
+        final int endSlot = reverse ? -1 : container.slots.size();
+        final int increment = reverse ? -1 : 1;
+        final boolean isPlayerInv = container instanceof PlayerScreenHandler;
+
+        for (int slotNum = startSlot; slotNum != endSlot; slotNum += increment)
+        {
+            Slot slot = container.slots.get(slotNum);
+            ItemStack stack = slot.getStack();
+
+            if ((isPlayerInv == false || fi.dy.masa.malilib.util.InventoryUtils.isRegularInventorySlot(slot.id, false)) &&
+                MobEntity.getPreferredEquipmentSlot(stack) == EquipmentSlot.CHEST)
+            {
+                return slot.id;
+            }
+        }
+
+        return -1;
+    }
+
+    public static void swapChest(PlayerEntity player)
+    {
+        int slotNumber = findSlotWithChestEquipment(player.playerScreenHandler, false);
+        if (slotNumber == -1) return;
+
+        swapItemToEquipmentSlot(player, EquipmentSlot.CHEST, slotNumber);
+    }
+
     private static boolean isHotbarSlot(Slot slot)
     {
         return slot.id >= 36 && slot.id <= 44;
@@ -461,7 +492,7 @@ public class InventoryUtils
         }
     }
 
-    private static void swapItemToEqupmentSlot(PlayerEntity player, EquipmentSlot type, int sourceSlotNumber)
+    private static void swapItemToEquipmentSlot(PlayerEntity player, EquipmentSlot type, int sourceSlotNumber)
     {
         if (sourceSlotNumber != -1 && player.currentScreenHandler == player.playerScreenHandler)
         {
